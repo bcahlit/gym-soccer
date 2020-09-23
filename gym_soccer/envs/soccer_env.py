@@ -46,6 +46,7 @@ class SoccerEnv(gym.Env, utils.EzPickle):
         self.observation_space = spaces.Box(low=-1, high=1,
                                             shape=((self.env.getStateSize(),)), dtype=np.float32)
         # Action space omits the Tackle/Catch actions, which are useful on defense
+        # 这个比如说　动作0有两个参数，第一个参数的范围是0-100 ，第二个参数的范围是-180,180 那么最低值为[0, -180] 最高值的集合为[180,180]
         low0 = np.array([0, -180], dtype=np.float32) 
         high0 = np.array([100, 180], dtype=np.float32)
         low1 = np.array([-180], dtype=np.float32)
@@ -110,14 +111,14 @@ class SoccerEnv(gym.Env, utils.EzPickle):
         self.server_port = port
         '''cmd = self.hfo_path + \
               " --headless --frames-per-trial %i --untouched-time %i --offense-agents %i"\
-	      " --defense-agents %i --offense-npcs %i --defense-npcs %i"\
-	      " --port %i --offense-on-ball %i --seed %i --ball-x-min %f"\
-	      " --ball-x-max %f --log-dir %s"\
-	      % (frames_per_trial, untouched_time, 
-		 offense_agents,
-		 defense_agents, offense_npcs, defense_npcs, port,
-		 offense_on_ball, seed, ball_x_min, ball_x_max,
-		 log_dir)'''
+              " --defense-agents %i --offense-npcs %i --defense-npcs %i"\
+              " --port %i --offense-on-ball %i --seed %i --ball-x-min %f"\
+              " --ball-x-max %f --log-dir %s"\
+              % (frames_per_trial, untouched_time, 
+                 offense_agents,
+                 defense_agents, offense_npcs, defense_npcs, port,
+                 offense_on_ball, seed, ball_x_min, ball_x_max,
+                 log_dir)'''
         cmd = self.hfo_path + \
               " --headless --frames-per-trial %i --offense-agents %i"\
               " --defense-agents %i --offense-npcs %i --defense-npcs %i"\
